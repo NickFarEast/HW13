@@ -17,7 +17,7 @@ hr {
 select {
     padding: 7px 6px;
     background-color: #ddd;
-    border:none;
+    border: None;
     border-radius: 4px;
     font-size: 18px;
 }

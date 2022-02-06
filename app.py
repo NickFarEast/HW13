@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, send_from_directory
-# from functions import ...
+from functions import get_post_by_tag, get_all_tags_from_posts
 
-POST_PATH = "posts.json"
+
 UPLOAD_FOLDER = "uploads/images"
 
 app = Flask(__name__)
@@ -9,12 +9,16 @@ app = Flask(__name__)
 
 @app.route("/")
 def page_index():
-    pass
+
+    all_tags = get_all_tags_from_posts()
+    return render_template("index.html", all_tags=all_tags)
 
 
 @app.route("/tag")
 def page_tag():
-    pass
+    tag_name = request.args.get("tag")
+    posts = get_post_by_tag(tag_name)
+    return render_template("post_by_tag.html", tag_name=tag_name,  posts=posts)
 
 
 @app.route("/post", methods=["GET", "POST"])
